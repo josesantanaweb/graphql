@@ -6,16 +6,16 @@ export class User {
   @Field(() => ID, { nullable: false })
   id: number;
 
-  @Field(() => ID, { nullable: false })
+  @Field(() => String, { nullable: false })
   username: string;
 
-  @Field(() => ID, { nullable: false })
+  @Field(() => String, { nullable: false })
   email: string;
 
-  @Field(() => ID, { nullable: false })
+  @Field(() => String, { nullable: false })
   password?: string;
 
-  @Field(() => ID, { nullable: false })
+  @Field(() => String, { nullable: false })
   avatar?: string;
 }
 
@@ -34,6 +34,6 @@ export class UserInput {
   })
   password: string;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: false })
   avatar: string;
 }
