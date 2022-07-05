@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType, InputType } from "type-graphql";
-import { IsEmail, MaxLength, MinLength } from "class-validator";
+import { IsEmail, MinLength } from "class-validator";
 
 @ObjectType()
 export class User {
@@ -15,12 +15,12 @@ export class User {
   @Field(() => String, { nullable: false })
   password?: string;
 
-  @Field(() => String, { nullable: false })
-  avatar?: string;
+  @Field(() => String)
+  avatar?: string | null;
 }
 
 @InputType()
-export class UserInput {
+export class RegisterInput {
   @Field(() => String)
   username: string;
 
@@ -30,10 +30,22 @@ export class UserInput {
 
   @Field(() => String)
   @MinLength(6, {
-    message: "password must be at least 6 characters long",
+    message: "Password must be at least 6 characters long",
   })
   password: string;
 
-  @Field(() => String, { nullable: false })
+  @Field(() => String)
   avatar: string;
+}
+
+@InputType()
+export class LoginInput {
+  @Field(() => String)
+  email: string;
+
+  @Field(() => String)
+  @MinLength(6, {
+    message: "password must be at least 6 characters long",
+  })
+  password: string;
 }
